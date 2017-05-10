@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+		version="2.0">
+    <namespace>http://edernilson.com/componentes/ui</namespace>
+    <tag>
+        <tag-name>leaflet</tag-name>
+        <description><![CDATA[LeafLet component is built on LeafLet API. LeafLet is highly integrated with JSF development model and enhanced with Ajax capabilities.]]></description>
+        <component>
+            <component-type>com.edernilson.componentes.LeafLet</component-type>
+            <renderer-type>com.edernilson.componentes.LeafLetRenderer</renderer-type>
+        </component>
+        <attribute>
+            <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+            <name>id</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+            <name>rendered</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+            <name>binding</name>
+            <required>false</required>
+            <type>javax.faces.component.UIComponent</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Name of the client side widget.]]></description>
+            <name>widgetVar</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[An com.edernilson.componentes.model.leaflet.MapModel instance.]]></description>
+            <name>model</name>
+            <required>false</required>
+            <type>com.edernilson.componentes.model.leaflet.MapModel</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Inline style of the map container.]]></description>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Style class of the map container.]]></description>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Type of the map. Required.]]></description>
+            <name>type</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Center point of the map. Required.]]></description>
+            <name>center</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Defines the initial zoom level. Default is 8.]]></description>
+            <name>zoom</name>
+            <required>true</required>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Controls street view support. Default is false.]]></description>
+            <name>streetView</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Disables default UI controls. Default is false.]]></description>
+            <name>disableDefaultUI</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Defines visibility of navigation control. Default is true.]]></description>
+            <name>navigationControl</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Defines visibility of map type control. Default is true.]]></description>
+            <name>mapTypeControl</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Defines draggability of map. Default is true.]]></description>
+            <name>draggable</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Disables zooming on mouse double click. Default is false.]]></description>
+            <name>disableDoubleClickZoom</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Javascript callback to execute when a point on map is clicked.]]></description>
+            <name>onPointClick</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Defines setting center and zoom values auto by included overlays on startup. Default value is false]]></description>
+            <name>fitBounds</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>leafLetInfoWindow</tag-name>
+        <description><![CDATA[LeafLetInfoWindow is used with LeafLet component to open a window on map when an overlay is selected.]]></description>
+        <component>
+            <component-type>com.edernilson.componentes.LeafLetInfoWindow</component-type>
+        </component>
+        <attribute>
+            <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+            <name>id</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+            <name>rendered</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+            <name>binding</name>
+            <required>false</required>
+            <type>javax.faces.component.UIComponent</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Maximum width of the info window. Default is min integer value.]]></description>
+            <name>maxWidth</name>
+            <required>false</required>
+            <type>java.lang.Integer</type>
+        </attribute>
+    </tag>
+
+</facelet-taglib>
