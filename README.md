@@ -44,4 +44,4 @@ Em seguida, você pode usar a tag `leaflet` no seu arquivo de facelet exatamente
 
 	<e:leaflet center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:100%;height:400px" />
 
-Acesse o [Showcase do componente](www.edernilson.com.br/leaflet-extension-workshop) ou [Showcase do primefaces](https://www.primefaces.org/showcase/ui/data/gmap/basic.xhtml) para mais exemplos de uso.
+Acesse o [Showcase do componente](http://www.edernilson.com.br/leaflet-extension-workshop) ou [Showcase do primefaces](https://www.primefaces.org/showcase/ui/data/gmap/basic.xhtml) para mais exemplos de uso.
