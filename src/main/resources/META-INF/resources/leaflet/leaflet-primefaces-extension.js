@@ -64,14 +64,14 @@ PrimeFaces.widget.LeafLet = PrimeFaces.widget.BaseWidget.extend({
         this.configureEventListeners();
 
         //fit auto bounds
-        if(this.cfg.fitBounds && this.viewport)
+        if (this.cfg.fitBounds && this.viewport)
             this.map.fitBounds(this.viewport);
 
         //bind infowindow domready for dynamic content.
-        if(this.cfg.infoWindow){
+        if (this.cfg.infoWindow) {
             var _self = this;
-            
-            
+
+
             _self.loadWindow(_self.cfg.infoWindowContent);
 //            *** Isso não foi necessário
 //            L.DomEvent.on(this.cfg.infoWindow, 'domready', function() {
@@ -98,20 +98,20 @@ PrimeFaces.widget.LeafLet = PrimeFaces.widget.BaseWidget.extend({
             var update = updates.eq(i),
                     id = update.attr('id'),
                     content = update.text();
-            
+
             if (id === infoWindow.options.id) {
                 this.cfg.infoWindowContent = content;
 
-                infoWindow.setLatLng(this.selectedOverlay.getLatLng());                
+                infoWindow.setLatLng(this.selectedOverlay.getLatLng());
                 infoWindow.setContent('<div id="' + id + '_content">' + content + '</div>');
-                
+
 //                this.selectedOverlay.bindPopup('<div id="' + id + '_content">' + content + '</div>').openPopup();
                 if (infoWindow.options.maxWidth)
                     this.selectedOverlay.bindPopup(infoWindow, {maxWidth: infoWindow.options.maxWidth});
                 else
                     this.selectedOverlay.bindPopup(infoWindow, {maxWidth: "auto"});
                 this.selectedOverlay.openPopup();
-                
+
 //                infoWindow.setLatLng(this.selectedOverlay.getLatLng());
 //                infoWindow.setContent('<div id="' + id + '_content">' + content + '</div>');
 //                infoWindow.openOn(this.map);
@@ -130,13 +130,14 @@ PrimeFaces.widget.LeafLet = PrimeFaces.widget.BaseWidget.extend({
     configureMarkers: function() {
         var _self = this;
 
+        //Cria o Cluster
+        var markersCluster = L.markerClusterGroup({
+            removeOutsideVisibleBounds: true,
+            maxClusterRadius: 80
+        });
+
         for (var i = 0; i < this.cfg.markers.length; i++) {
             var marker = this.cfg.markers[i];
-            marker.addTo(this.map);
-
-            //extend viewport
-            if (this.cfg.fitBounds)
-                this.extendView(marker);
 
             //overlay select
             marker.on('click', function(event) {
@@ -147,7 +148,17 @@ PrimeFaces.widget.LeafLet = PrimeFaces.widget.BaseWidget.extend({
             marker.on('dragend', function(event) {
                 _self.fireMarkerDragEvent(event, this);
             });
-        }
+
+            markersCluster.addLayer(marker, {
+                chunkedLoading: true
+            });
+
+        } // for
+        this.map.addLayer(markersCluster);
+        //extend viewport
+        if (this.cfg.fitBounds)
+            this.extendView(markersCluster);
+
     },
     fireMarkerDragEvent: function(event, marker) {
         if (this.hasBehavior('markerDrag')) {
@@ -279,12 +290,15 @@ PrimeFaces.widget.LeafLet = PrimeFaces.widget.BaseWidget.extend({
 
         if (this.cfg.fitBounds && overlay) {
             var _self = this;
-            this.viewport = this.viewport || new google.maps.LatLngBounds();
+            this.viewport = this.viewport || new L.LatLngBounds();
             if (overlay instanceof L.Marker) {
                 this.viewport.extend(overlay.getLatLng());
             }
             else if (overlay instanceof L.Circle || overlay instanceof L.Rectangle)
                 this.viewport.union(overlay.getBounds());
+
+            else if (overlay instanceof L.MarkerClusterGroup)
+                this.viewport.extend(overlay.getBounds());
 
             else if (overlay instanceof L.Polyline || overlay instanceof L.Polygon)
                 overlay.getPath().forEach(function(item, index) {

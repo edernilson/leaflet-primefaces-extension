@@ -35,7 +35,10 @@ import org.primefaces.context.RequestContext;
     @ResourceDependency(library = "primefaces", name = "jquery/jquery.js"),
     @ResourceDependency(library = "primefaces", name = "primefaces.js"),
     @ResourceDependency(library = "leaflet", name = "css/leaflet.css"),
+    @ResourceDependency(library = "leaflet", name = "css/MarkerCluster.css"),
+    @ResourceDependency(library = "leaflet", name = "css/MarkerCluster.Default.css"),
     @ResourceDependency(library = "leaflet", name = "leaflet.js"),
+    @ResourceDependency(library = "leaflet", name = "leaflet.markercluster.js"),
     @ResourceDependency(library = "leaflet", name = "leaflet-primefaces-extension.js")
 })
 public class LeafLet extends UIComponentBase implements org.primefaces.component.api.Widget, javax.faces.component.behavior.ClientBehaviorHolder {

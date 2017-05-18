@@ -4,7 +4,7 @@
 
     <groupId>com.edernilson</groupId>
     <artifactId>leaflet-primefaces-extension</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>leaflet-primefaces-extension</name>
